@@ -49,7 +49,7 @@
                                             <div class="single-form form-default">
                                                 <label>Email Address</label>
                                                 <div class="form-input form">
-                                                    <input type="email" name="email_address" placeholder="Email Address"/>
+                                                    <input type="email" name="email" placeholder="Email Address"/>
                                                 </div>
                                             </div>
                                         </div>
