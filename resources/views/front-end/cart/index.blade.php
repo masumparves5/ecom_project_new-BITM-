@@ -127,4 +127,8 @@
         </div>
     </div>
 
+    <?php
+    Session::put('sum', $sum);
+    ?>
+
 @endsection

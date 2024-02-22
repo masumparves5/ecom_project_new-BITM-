@@ -23,7 +23,8 @@
         </div>
     </div>
 
-
+    <form action="{{route('new.order')}}" method="POST">
+        @csrf
     <section class="checkout-wrapper section">
         <div class="container">
             <div class="row justify-content-center">
@@ -39,7 +40,7 @@
                                                 <label>Full Name</label>
                                                 <div class="row">
                                                     <div class="col-md-12 form-input form">
-                                                        <input type="text" name="fullName" placeholder="Full Name">
+                                                        <input type="text" name="name" placeholder="Full Name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,7 +49,7 @@
                                             <div class="single-form form-default">
                                                 <label>Email Address</label>
                                                 <div class="form-input form">
-                                                    <input type="email" name="emailAddress" placeholder="Email Address"/>
+                                                    <input type="email" name="email_address" placeholder="Email Address"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +65,7 @@
                                             <div class="single-form form-default">
                                                 <label>Delivery Address</label>
                                                 <div class="form-input form">
-                                                    <textarea class="pt-2" placeholder="Delivery Address"> </textarea>
+                                                    <textarea class="pt-2" name="address" placeholder="Delivery Address"> </textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,22 +94,26 @@
                             <h5 class="title">Pricing Table</h5>
                             <div class="sub-total-price">
                                 <div class="total-price">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$144.00</p>
+                                    <p class="value">Subtotal:</p>
+                                    <p class="price">{{$sum =Session::get('sum')}}</p>
+                                    <input type="hidden" value="{{$sum}}" name="subtotal">
                                 </div>
                                 <div class="total-price shipping">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$10.50</p>
+                                    <p class="value">Tax:</p>
+                                    <p class="price">{{$tax = round($sum * 0.15)}}</p>
+                                    <input type="hidden" value="{{$tax}}" name="tax">
                                 </div>
                                 <div class="total-price discount">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$10.00</p>
+                                    <p class="value">Shipping Cost:</p>
+                                    <p class="price">{{$shipping = 100}}</p>
+                                    <input type="hidden" value="{{$shipping}}" name="shipping">
                                 </div>
                             </div>
                             <div class="total-payable">
                                 <div class="payable-price">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$164.50</p>
+                                    <p class="value">Total Payable:</p>
+                                    <p class="price">{{$total = ($sum+$tax+$shipping)}}</p>
+                                    <input type="hidden" value="{{$total}}" name="total">
                                 </div>
                             </div>
                         </div>
@@ -122,6 +127,6 @@
             </div>
         </div>
     </section>
-
+    </form>
 
 @endsection

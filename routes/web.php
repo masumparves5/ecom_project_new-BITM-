@@ -23,6 +23,8 @@ Route::post('/cart/update/{row_id}',[CartController::class,'update'])->name('car
 Route::get('/cart/delete/{row_id}',[CartController::class,'delete'])->name('cart.delete');
 
 Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
+Route::post('/new/order',[CheckoutController::class,'newOrder'])->name('new.order');
+
 Route::get('/customer/login',[CustomerAuthController::class,'login'])->name('customer.login');
 Route::get('/customer/register',[CustomerAuthController::class,'register'])->name('customer.register');
 
